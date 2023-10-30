@@ -1,0 +1,200 @@
+const productos = [
+
+    // Guitarras ******************************
+
+    {
+        id: "guitarra-gibson-lespaul",
+        titulo: "Guitarra Gibson LP Classic",
+        imagen: "./img/Guitarra_Gibson_LP_Classic.png",
+        categoria: {
+            nombre: "Guitarras",
+            id: "guitarras"
+        },
+        precio: 1000
+    },
+
+    {
+        id: "guitarra-fender-stratocaster",
+        titulo: "Guitarra Fender Stratocaster Plus Top",
+        imagen: "./img/Guitarra_Fender_Stratocaster_PlusTop.png",
+        categoria: {
+            nombre: "Guitarras",
+            id: "guitarras"
+        },
+        precio: 1000
+    },
+
+    {
+        id: "guitarra-gibson-stratocaster",
+        titulo: "Guitarra Fender Telecaster Vintage1952",
+        imagen: "./img/Guitarra_Fender_Telecaster_Vintage1952.png",
+        categoria: {
+            nombre: "Guitarras",
+            id: "guitarras"
+        },
+        precio: 1000
+    },
+
+    // Bajos *******************************
+
+    {
+        id: "bajo-fender-jazzbass",
+        titulo: "Bajo Fender Jazz Bass",
+        imagen: "./img/Bajo_Fender_JazzBass.png",
+        categoria: {
+            nombre: "Bajos",
+            id: "bajos"
+        },
+        precio: 1000
+    },
+
+    {
+        id: "bajo-fender-precision",
+        titulo: "Bajo Fender Precision",
+        imagen: "./img/Bajo_Fender_Precision.png",
+        categoria: {
+            nombre: "Bajos",
+            id: "bajos"
+        },
+        precio: 1000
+    },
+
+    {
+        id: "bajo-yamaha-trbx504",
+        titulo: "Bajo Yamaha TRBX 504",
+        imagen: "./img/Bajo_Yamaha_TRBX504.png",
+        categoria: {
+            nombre: "Bajos",
+            id: "bajos"
+        },
+        precio: 1000
+    },
+
+    // Electronica ***************************
+
+    {
+        id: "electronica-apollotwin",
+        titulo: "Apollo Twin MKII Duo",
+        imagen: "./img/Electronica_ApolloTwin_MKIIDUO.png",
+        categoria: {
+            nombre: "Electronica",
+            id: "electronica"
+        },
+        precio: 1000
+    },
+
+    {
+        id: "electronica-audientd14",
+        titulo: "Audient D14",
+        imagen: "./img/Electronica_AudientID14.png",
+        categoria: {
+            nombre: "Electronica",
+            id: "electronica"
+        },
+        precio: 1000
+    },
+
+    {
+        id: "electronica-focusrite2i2",
+        titulo: "Focusrite Scarlett 2i2",
+        imagen: "./img/Electronica_Focusrite2i2.png",
+        categoria: {
+            nombre: "Electronica",
+            id: "electronica"
+        },
+        precio: 1000
+    },
+
+]
+
+const contenedorProductos = document.querySelector("#contenedor-productos");
+const botonesCategorias = document.querySelectorAll(".boton-categoria");
+const tituloPrincipal = document.querySelector("#titulo-principal");
+let botonesAgregar = document.querySelectorAll(".producto-agregar");
+const numerito = document.querySelector("#numerito");
+
+function cargarProductos(productosElegidos) {
+
+    contenedorProductos.innerHTML = "";
+
+    productosElegidos.forEach(producto => {
+
+        const div = document.createElement("div");
+        div.classList.add("producto");
+        div.innerHTML = `
+                <img class="producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
+                    <div class="producto-detalles">
+                        <h3 class="producto-titulo">${producto.titulo}</h3>
+                        <p class="producto-precio">u$ ${producto.precio}</p>
+                        <button class="producto-agregar" id="${producto.id}">Agregar</button>
+                </div>
+        `
+        contenedorProductos.append(div);
+    })
+
+    actualizarBotonesAgregar()
+}
+
+cargarProductos(productos);
+
+botonesCategorias.forEach(boton => {
+    boton.addEventListener("click", (e) => {
+
+        botonesCategorias.forEach(boton => boton.classList.remove("active"));
+        e.currentTarget.classList.add("active");
+
+        if (e.currentTarget.id != "todos") {
+            const productoCategoria = productos.find(producto => producto.categoria.id === e.currentTarget.id);
+            tituloPrincipal.innerText = productoCategoria.categoria.nombre;
+            const productosBoton = productos.filter(producto => producto.categoria.id === e.currentTarget.id);
+            cargarProductos(productosBoton);
+        } else {
+            tituloPrincipal.innerText = "Todos los productos"
+            cargarProductos(productos);  
+            }
+    })
+})
+
+function actualizarBotonesAgregar() {
+    botonesAgregar = document.querySelectorAll(".producto-agregar");
+
+    botonesAgregar.forEach(boton => {
+        boton.addEventListener("click", agregarAlCarrito);
+    })
+}
+
+
+let productosEnCarrito;
+
+let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
+
+if (productosEnCarritoLS) {
+    productosEnCarrito = JSON.parse(productosEnCarritoLS);
+    actualizarNumerito();
+} else {
+    productosEnCarrito = [];
+}
+
+
+function agregarAlCarrito(e) {
+
+    const idBoton = e.currentTarget.id;
+    const productoAgregado = productos.find(producto => producto.id === idBoton);
+
+    if(productosEnCarrito.some(producto => producto.id === idBoton)){
+
+        const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
+        productosEnCarrito[index].cantidad++;
+        } else {
+            productoAgregado.cantidad = 1;
+            productosEnCarrito.push(productoAgregado);
+        };
+        actualizarNumerito();
+
+        localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+}
+
+function actualizarNumerito() {
+    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
+    numerito.innerText = nuevoNumerito;
+}
