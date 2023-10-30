@@ -296,10 +296,6 @@ main {
     cursor: pointer;
 }
 
-.disabled {
-    display: none;
-}
-
 .carrito-vacio {
     text-align: center;
 }
@@ -313,4 +309,8 @@ main {
 
 .gif {
     width: 20rem;
+}
+
+.disabled {
+    display: none;
 }
