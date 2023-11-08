@@ -5,25 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio-max cart</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
 
     <header>
-    <nav class="navbar">
-        <ul class="menu-navbar">
-            <li>Ofertas</li>
-            <li>Historial</li>
-        </ul>
-        <div class="buscador">
-            <input class="buscador-input" type="search" id="site-search" name="q"/>
-            <button class="buscador-boton" type="submit">Buscar</button>
+        <nav class="navbar">
+            <ul class="menu-navbar">
+                <li><button class="menu-button" href="" id="ofertas">Ofertas</button></li>
+                <li><button class="menu-button" href="" id="historial">Historial</button></li>
+            </ul>
+            <ul class="menu-usuario">
+                <li><button class="menu-button"  id="signup" href="">Creá tu cuenta</button></li>
+                <li><button class="menu-button" id="ingresa" href="">Ingresá</button></li>
+            </ul>
+        </nav>
+        <div class="wrapper disabled" id="wrapper">
+            <div class="login" id="login-form">
+                <button class="cerrar" id="cerrar"></button>
+                <label for="uname"><b>Usuario</b></label>
+                <input class="formulario" type="text" placeholder="Ingrese usuario" name="uname" required>
+            
+                <label for="psw"><b>Contraseña</b></label>
+                <input class="formulario" type="password" placeholder="Ingrese contraseña" name="psw" required>
+            
+                <button class="login-boton" type="submit" id="login-boton">LOGIN</button>
+            </div>
         </div>
-        <ul class="menu-usuario">
-            <li>Creá tu cuenta</li>
-            <li>Ingresá</li>
-        </ul>
-    </nav>
+
+        <div class="wrapper-signup disabled" id="wrapper2">
+            <div class="login" id="signup-form">
+                <button class="cerrar" id="cerrar2"></button>
+                <label for="uname"><b>Usuario</b></label>
+                <input class="formulario" type="text" placeholder="Ingrese usuario" name="uname" required>
+                <label for="psw"><b>Contraseña</b></label>
+                <input class="formulario" type="password" placeholder="Ingrese contraseña" name="psw" required>
+                <label for="psw"><b>E-mail</b></label>
+                <input class="formulario" type="email" placeholder="Ingrese email" name="email" required>
+                <button class="login-boton" type="submit" id="signup-boton">SIGNUP</button>
+            </div>
+        </div>
 
     <div class="navbar-categorias">
         <div class="titulo">
@@ -60,7 +82,7 @@
                 <div class="carrito-acciones-derecha">
                     <div class="carrito-acciones-total">
                         <p>Total</p>
-                        <p id="total">$3000</p>
+                        <p id="total"></p>
                     </div>
                     <button id="carrito-acciones-comprar" class="carrito-acciones-comprar">Comprar</button>
                 </div>
@@ -72,6 +94,8 @@
         </div>
     </main>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/cart.js"></script>
 </body>
 </html>

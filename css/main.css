@@ -9,6 +9,10 @@
     font-family: 'Roboto', sans-serif;
 }
 
+html {
+    background-color: #CEA2AC;
+}
+
 h1, h2, h3, h4, h5, h6, p, a, input, textarea, ul {
     margin: 0;
     padding: 0;
@@ -44,6 +48,14 @@ a:visited {
     font-weight: bold;
     background-color: #8F3985;
     border-radius: 1rem;
+}
+
+.menu-button {
+    background-color: #8F3985;
+    border: none;
+    font-weight: bold;
+    color: #EFD9CE;
+    cursor: pointer;
 }
 
 .menu-usuario {
@@ -143,11 +155,6 @@ a:visited {
     color: #EFF7FF;
     font-size: .85rem;
     padding-bottom: .5rem;
-}
-
-.wrapper {
-    display: flex;
-    background-color: #231123;
 }
 
 main {
@@ -311,6 +318,81 @@ main {
     width: 20rem;
 }
 
+
+/* ************************************* */
+
+input {
+    text-align: center;
+}
+
+.wrapper, .wrapper-signup {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    gap: .5rem;
+    padding: 1rem;
+    max-width: 12rem;
+    min-width: 12rem;
+    z-index: 1;
+    background-color: #8F3985;
+    color: #EFD9CE;
+    border-radius: 0rem 0rem 2rem 2rem;
+}
+
+.login-boton {
+    padding: .5rem;
+    border-radius: 1rem;
+    color: #EFD9CE;
+    background-color: #8F3985;
+    border: solid 1px #231123;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.login-boton:hover {
+    background-color: #EFD9CE;
+    color: #8F3985;
+}
+
+.formulario {
+    border-radius: 1rem;
+    border: none;
+    padding: .3rem;
+}
+
+.cerrar {
+    height: 2rem;
+    background-image:url('../img/cross.png');
+    background-repeat:no-repeat;
+    background-color: transparent;
+    height:1rem;
+    width:1rem;
+    border-radius: 2rem;
+    background-size: 1rem;
+    background-position:center;
+    border: none;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.cerrar:hover {
+    filter:invert(100%) ;
+}
+
+
+
+
+
+
 .disabled {
     display: none;
 }
+

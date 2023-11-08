@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio-max</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
@@ -12,18 +13,44 @@
     <header>
         <nav class="navbar">
             <ul class="menu-navbar">
-                <li><a href="">Ofertas</a></li>
-                <li><a href="">Historial</a></li>
+                <li><button class="menu-button" href="" id="ofertas">Ofertas</button></li>
+                <li><button class="menu-button" href="" id="historial">Historial</button></li>
             </ul>
             <div class="buscador">
-                <input class="buscador-input" type="search" id="site-search" name="q"/>
-                <button class="buscador-boton" type="submit">Buscar</button>
+                <input id="search" class="buscador-input" type="search" name="q"/>
+                <button id="search-button" class="buscador-boton" type="submit">Buscar</button>
             </div>
             <ul class="menu-usuario">
-                <li><a href="">Creá tu cuenta</a></li>
-                <li><a href="">Ingresá</a></li>
+                <li><button class="menu-button"  id="signup" href="">Creá tu cuenta</button></li>
+                <li><button class="menu-button" id="ingresa" href="">Ingresá</button></li>
             </ul>
         </nav>
+        <div class="wrapper disabled" id="wrapper">
+            <!-- Esto estaria adentro de un form si quisiera que funcionara realmente -->
+            <div class="login" id="login-form">
+                <button class="cerrar" id="cerrar"></button>
+                <b>Usuario</b>
+                <input class="formulario" type="text" placeholder="Ingrese usuario" name="uname" required>           
+                <b>Contraseña</b>
+                <input class="formulario" type="password" placeholder="Ingrese contraseña" name="psw" required>            
+                <button class="login-boton" type="submit" id="login-boton">LOGIN</button>
+            </div>
+        </div>
+
+        <div class="wrapper-signup disabled" id="wrapper2">
+            <!-- Esto estaria adentro de un form si quisiera que funcionara realmente -->
+            <div class="login" id="signup-form">
+                <button class="cerrar" id="cerrar2"></button>
+                <b>Usuario</b>
+                <input class="formulario" type="text" placeholder="Ingrese usuario" name="uname" required>
+                <b>Contraseña</b>
+                <input class="formulario" type="password" placeholder="Ingrese contraseña" name="psw" required>
+                <b>E-mail</b>
+                <input class="formulario" type="email" placeholder="Ingrese email" name="email" autocomplete="off" required>
+                <button class="login-boton" type="submit" id="signup-boton">SIGNUP</button>
+            </div>
+        </div>
+
     </header>
 
     <div class="navbar-categorias">
@@ -44,18 +71,30 @@
         </footer>
     </div>
 
-
-    <div class="wrapper">
-    <main>
-        <h2 id="titulo-principal" class="titulo-principal">Todos los productos</h2>
-
-        <div id="contenedor-productos" class="contenedor-productos">
-
-        </div>
-    </main>
+        <main>
+            <h2 id="titulo-principal" class="titulo-principal">Todos los productos</h2>
+            <div id="contenedor-productos" class="contenedor-productos">
+        </main>
 
 
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/main.js"></script>
+
+
+    <!-- Lo intente pero no lo entendi -->
+    
+    <!-- <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.2/firebase-app.js";
+        const firebaseConfig = {
+        apiKey: "AIzaSyDtSO9VgsL2gA6AmMh8IWqGckrkheIMyvI",
+        authDomain: "audio-max-2184f.firebaseapp.com",
+        projectId: "audio-max-2184f",
+        storageBucket: "audio-max-2184f.appspot.com",
+        messagingSenderId: "941256476142",
+        appId: "1:941256476142:web:6c7a3e69fa6b8c14003aff"
+        };
+        const app = initializeApp(firebaseConfig);
+    </script> -->
 </body>
 </html>

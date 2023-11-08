@@ -9,25 +9,29 @@ let botonesEliminar = document.querySelectorAll("#carrito-producto-eliminar");
 const botonVaciar = document.querySelector("#carrito-acciones-vaciar");
 const contenedorTotal = document.querySelector("#total");
 const botonComprar = document.querySelector("#carrito-acciones-comprar");
+const cerrar = document.querySelector("#cerrar");
+const wrapper = document.querySelector("#wrapper");
+const ingresa = document.querySelector("#ingresa");
+const cerrar2 = document.querySelector("#cerrar2");
+const wrapper2 = document.querySelector("#wrapper2");
+const ingresa2 = document.querySelector("#signup");
+const login = document.querySelector("#login-boton");
+const signup = document.querySelector("#signup-boton");
+const ofertas = document.querySelector("#ofertas");
+const historial = document.querySelector("#historial");
 
 
 
 function cargarProductosCarrito() {
-
     if (productosEnCarrito && productosEnCarrito.length > 0) {
-
-        
 
         contenedorCarritoVacio.classList.add("disabled");
         contenedorCarritoProductos.classList.remove("disabled");
         contenedorCarritoAcciones.classList.remove("disabled");
-        contenedorCarritoComprado.classList.add("disabled");
-    
+        contenedorCarritoComprado.classList.add("disabled"); 
         contenedorCarritoProductos.innerHTML = "";
     
-    
         productosEnCarrito.forEach(producto => {
-    
             const div = document.createElement("div");
             div.classList.add("carrito-producto");
             div.innerHTML = `
@@ -42,17 +46,15 @@ function cargarProductosCarrito() {
                 </div>   
                 <div class="carrito-producto-precio">
                     <small>Precio</small>
-                    <p>${producto.precio}</p>
+                    <p>u$ ${producto.precio}</p>
                 </div>        
                 <div class="carrito-producto-subtotal">
                     <small>Subtotal</small>
-                    <p>${producto.precio * producto.cantidad}</p>
+                    <p>u$ ${producto.precio * producto.cantidad}</p>
                 </div>
                 <button class="carrito-producto-eliminar" id="${producto.id}"><i class="bi bi-trash"></i></button>
             `;
-    
             contenedorCarritoProductos.append(div);
-    
         })
     } else {
         contenedorCarritoVacio.classList.remove("disabled");
@@ -67,15 +69,12 @@ function cargarProductosCarrito() {
 
 cargarProductosCarrito();
 
-
 function actualizarBotonesEliminar() {
     botonesEliminar = document.querySelectorAll(".carrito-producto-eliminar");
-
     botonesEliminar.forEach(boton => {
         boton.addEventListener("click", eliminarDelCarrito);
     })
 }
-
 
 function eliminarDelCarrito(e) {
     const idBoton = e.currentTarget.id;
@@ -85,7 +84,6 @@ function eliminarDelCarrito(e) {
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
 }
 
-
 botonVaciar.addEventListener("click", vaciarCarrito);
 function vaciarCarrito() {
     productosEnCarrito.length = 0;
@@ -93,21 +91,113 @@ function vaciarCarrito() {
     cargarProductosCarrito();
 }
 
-
 function actualizarTotal() {
     const totalCalculado = productosEnCarrito.reduce((acc, producto) => acc + (producto.precio * producto.cantidad), 0);
-    total.innerText = `$${totalCalculado}`;
+    total.innerText = `u$ ${totalCalculado}`;
 }
-
 
 botonComprar.addEventListener("click", comprarCarrito);
 function comprarCarrito() {
-
     productosEnCarrito.length = 0;
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
-
     contenedorCarritoVacio.classList.add("disabled");
     contenedorCarritoProductos.classList.add("disabled");
     contenedorCarritoAcciones.classList.add("disabled");
     contenedorCarritoComprado.classList.remove("disabled");
 }
+
+// ****************
+
+// ingresa.addEventListener("click", () => {
+//     wrapper.classList.remove("disabled");
+//     wrapper2.classList.add("disabled");
+// });
+
+// cerrar.addEventListener("click", () => {
+//     wrapper.classList.add("disabled");
+// })
+
+// ingresa2.addEventListener("click", () => {
+//     wrapper2.classList.remove("disabled");
+//     wrapper.classList.add("disabled");
+// });
+
+// cerrar2.addEventListener("click", () => {
+//     wrapper2.classList.add("disabled");
+// })
+
+// login.addEventListener("click", () => {
+//     Toastify({
+//         text: "Funcion no disponible",  
+//         duration: 1500
+//         }).showToast();
+// })
+
+// signup.addEventListener("click", () => {
+//     Toastify({
+//         text: "Funcion no disponible",  
+//         duration: 1500
+//         }).showToast();
+// })
+
+// ofertas.addEventListener("click", () => {
+//     Toastify({
+//         text: "Funcion disponible para usuarios",  
+//         duration: 1500
+//         }).showToast();
+// })
+
+// historial.addEventListener("click", () => {
+//     Toastify({
+//         text: "Funcion disponible para usuarios",  
+//         duration: 1500
+//         }).showToast();
+// })
+
+// ************************************************
+
+function alternar(mostrar, ocultar) {
+    mostrar.classList.remove("disabled");
+    if (ocultar) {
+        ocultar.classList.add("disabled");
+    }
+}
+
+function mostrarToast(message) {
+    Toastify({
+        text: message,
+        duration: 1500
+    }).showToast();
+}
+
+ingresa.addEventListener("click", () => {
+    alternar(wrapper, wrapper2);
+});
+
+ingresa2.addEventListener("click", () => {
+    alternar(wrapper2, wrapper);
+});
+
+cerrar.addEventListener("click", () => {
+    wrapper.classList.add("disabled");
+});
+
+cerrar2.addEventListener("click", () => {
+    wrapper2.classList.add("disabled");
+});
+
+login.addEventListener("click", () => {
+    mostrarToast("Funcion no disponible");
+});
+
+signup.addEventListener("click", () => {
+    mostrarToast("Funcion no disponible");
+});
+
+ofertas.addEventListener("click", () => {
+    mostrarToast("Funcion disponible para usuarios");
+});
+
+historial.addEventListener("click", () => {
+    mostrarToast("Funcion disponible para usuarios");
+});
