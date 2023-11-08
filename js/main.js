@@ -1,110 +1,11 @@
-const productos = [
+let productos = [];
+fetch("./js/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        cargarProductos(productos);
+    })
 
-    // Guitarras ******************************
-
-    {
-        id: "guitarra-gibson-lespaul",
-        titulo: "Guitarra Gibson LP Classic",
-        imagen: "./img/Guitarra_Gibson_LP_Classic.png",
-        categoria: {
-            nombre: "Guitarras",
-            id: "guitarras"
-        },
-        precio: 2999
-    },
-
-    {
-        id: "guitarra-fender-stratocaster",
-        titulo: "Guitarra Fender Stratocaster Plus Top",
-        imagen: "./img/Guitarra_Fender_Stratocaster_PlusTop.png",
-        categoria: {
-            nombre: "Guitarras",
-            id: "guitarras"
-        },
-        precio: 1029
-    },
-
-    {
-        id: "guitarra-gibson-stratocaster",
-        titulo: "Guitarra Fender Telecaster Vintage1952",
-        imagen: "./img/Guitarra_Fender_Telecaster_Vintage1952.png",
-        categoria: {
-            nombre: "Guitarras",
-            id: "guitarras"
-        },
-        precio: 1699
-    },
-
-    // Bajos *******************************
-
-    {
-        id: "bajo-fender-jazzbass",
-        titulo: "Bajo Fender Jazz Bass",
-        imagen: "./img/Bajo_Fender_JazzBass.png",
-        categoria: {
-            nombre: "Bajos",
-            id: "bajos"
-        },
-        precio: 1799
-    },
-
-    {
-        id: "bajo-fender-precision",
-        titulo: "Bajo Fender Precision",
-        imagen: "./img/Bajo_Fender_Precision.png",
-        categoria: {
-            nombre: "Bajos",
-            id: "bajos"
-        },
-        precio: 1749
-    },
-
-    {
-        id: "bajo-yamaha-trbx504",
-        titulo: "Bajo Yamaha TRBX 504",
-        imagen: "./img/Bajo_Yamaha_TRBX504.png",
-        categoria: {
-            nombre: "Bajos",
-            id: "bajos"
-        },
-        precio: 539
-    },
-
-    // Electronica ***************************
-
-    {
-        id: "electronica-apollotwin",
-        titulo: "Apollo Twin MKII Duo",
-        imagen: "./img/Electronica_ApolloTwin_MKIIDUO.png",
-        categoria: {
-            nombre: "Electronica",
-            id: "electronica"
-        },
-        precio: 999
-    },
-
-    {
-        id: "electronica-audientd14",
-        titulo: "Audient D14",
-        imagen: "./img/Electronica_AudientID14.png",
-        categoria: {
-            nombre: "Electronica",
-            id: "electronica"
-        },
-        precio: 614
-    },
-
-    {
-        id: "electronica-focusrite2i2",
-        titulo: "Focusrite Scarlett 2i2",
-        imagen: "./img/Electronica_Focusrite2i2.png",
-        categoria: {
-            nombre: "Electronica",
-            id: "electronica"
-        },
-        precio: 279
-    },
-]
 
 const contenedorProductos = document.querySelector("#contenedor-productos");
 const botonesCategorias = document.querySelectorAll(".boton-categoria");
@@ -142,8 +43,6 @@ function cargarProductos(productosElegidos) {
 
     actualizarBotonesAgregar()
 }
-
-cargarProductos(productos);
 
 botonesCategorias.forEach(boton => {
         boton.addEventListener("click", (e) => {
@@ -271,56 +170,7 @@ function buscar() {
     mostrarResultados(resultados);
 }
 
-
-// ***********************
-
-// ingresa.addEventListener("click", () => {
-//     wrapper.classList.remove("disabled");
-//     wrapper2.classList.add("disabled");
-// });
-
-// ingresa2.addEventListener("click", () => {
-//     wrapper2.classList.remove("disabled");
-//     wrapper.classList.add("disabled");
-// });
-
-// cerrar.addEventListener("click", () => {
-//     wrapper.classList.add("disabled");
-// })
-
-// cerrar2.addEventListener("click", () => {
-//     wrapper2.classList.add("disabled");
-// })
-
-// login.addEventListener("click", () => {
-//     Toastify({
-//         text: "Funcion no disponible",  
-//         duration: 1500
-//         }).showToast();
-// })
-
-// signup.addEventListener("click", () => {
-//     Toastify({
-//         text: "Funcion no disponible",  
-//         duration: 1500
-//         }).showToast();
-// })
-
-// ofertas.addEventListener("click", () => {
-//     Toastify({
-//         text: "Funcion disponible para usuarios",  
-//         duration: 1500
-//         }).showToast();
-// })
-
-// historial.addEventListener("click", () => {
-//     Toastify({
-//         text: "Funcion disponible para usuarios",  
-//         duration: 1500
-//         }).showToast();
-// })
-
-// *******************************************************
+// Sector menu login y alerts
 
 function alternar(mostrar, ocultar) {
     mostrar.classList.remove("disabled");
@@ -367,6 +217,8 @@ ofertas.addEventListener("click", () => {
 historial.addEventListener("click", () => {
     mostrarToast("Funcion disponible para usuarios");
 });
+
+
 
 
 

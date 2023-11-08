@@ -58,6 +58,10 @@ a:visited {
     cursor: pointer;
 }
 
+.abrir-menu {
+    display: none;
+}
+
 .menu-usuario {
         display: flex;
         padding: .5rem;
@@ -109,7 +113,7 @@ a:visited {
 .logo {
     font-weight: 300;
     font-size: 1.3rem;
-    padding-bottom: .5rem;
+    /* padding-bottom: .5rem; */
 }
 
 .menu {
@@ -389,10 +393,115 @@ input {
 
 
 
+@media screen and (max-width: 850px) {
+    .logo {
+        display: none;
+    }
+
+    .texto-footer {
+        display: none;
+    }
+
+    .menu {
+        gap: 0rem;
+    }
+
+    .buscador-input {
+        width: 17rem;
+    }
+}
+
+@media screen and (max-width: 675px) {
+    .contenedor-productos {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .abrir-menu {
+        display: flex;
+    }
+
+    .menu {
+        flex-direction: column;
+    }
+
+    .boton-menu.active {
+        background-color: #CEA2AC;
+        color: #231123;
+        border-radius: 1.5rem;
+    }
+
+    .navbar-categorias {
+        justify-content: center;
+        position:inherit;
+        padding: 1rem;
+    }
+
+    .buscador-input {
+        width: 10rem;
+    }
+
+    .carrito-productos {
+        align-items: center;
+    }
+
+    .carrito-producto { 
+        flex-direction: column;
+        max-width: 20rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .contenedor-productos {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .buscador-boton {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .contenedor-productos {
+        grid-template-columns: 1fr;
+    }
+
+    .buscador-input {
+        width: 5rem;
+    }
+
+    .menu-navbar {
+        display: none;
+    }
+
+    .navbar {
+        justify-content:flex-start ;
+        gap: .1rem;
+    }
+
+    main {
+        padding: .6rem;
+    }
+
+    .producto {
+        width: 14.5rem;
+    }
+
+    .titulo-principal {
+        text-align: start;
+        margin-left: .5rem;
+    }
+
+    body {
+        max-width: 400px;
+    }
+
+    .wrapper, .wrapper-signup {
+        justify-content: flex-start;
+    }
+}
 
 
-
+/* DISABLED */
 .disabled {
     display: none;
 }
-

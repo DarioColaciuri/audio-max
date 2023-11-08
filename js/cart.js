@@ -106,56 +106,6 @@ function comprarCarrito() {
     contenedorCarritoComprado.classList.remove("disabled");
 }
 
-// ****************
-
-// ingresa.addEventListener("click", () => {
-//     wrapper.classList.remove("disabled");
-//     wrapper2.classList.add("disabled");
-// });
-
-// cerrar.addEventListener("click", () => {
-//     wrapper.classList.add("disabled");
-// })
-
-// ingresa2.addEventListener("click", () => {
-//     wrapper2.classList.remove("disabled");
-//     wrapper.classList.add("disabled");
-// });
-
-// cerrar2.addEventListener("click", () => {
-//     wrapper2.classList.add("disabled");
-// })
-
-// login.addEventListener("click", () => {
-//     Toastify({
-//         text: "Funcion no disponible",  
-//         duration: 1500
-//         }).showToast();
-// })
-
-// signup.addEventListener("click", () => {
-//     Toastify({
-//         text: "Funcion no disponible",  
-//         duration: 1500
-//         }).showToast();
-// })
-
-// ofertas.addEventListener("click", () => {
-//     Toastify({
-//         text: "Funcion disponible para usuarios",  
-//         duration: 1500
-//         }).showToast();
-// })
-
-// historial.addEventListener("click", () => {
-//     Toastify({
-//         text: "Funcion disponible para usuarios",  
-//         duration: 1500
-//         }).showToast();
-// })
-
-// ************************************************
-
 function alternar(mostrar, ocultar) {
     mostrar.classList.remove("disabled");
     if (ocultar) {
