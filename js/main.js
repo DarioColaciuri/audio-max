@@ -6,9 +6,8 @@ fetch("./js/productos.json")
         cargarProductos(productos);
     })
 
-
-const contenedorProductos = document.querySelector("#contenedor-productos");
-const botonesCategorias = document.querySelectorAll(".boton-categoria");
+const productosContainer = document.querySelector("#contenedor-productos");
+const btnCategoria = document.querySelectorAll(".boton-categoria");
 const tituloPrincipal = document.querySelector("#titulo-principal");
 let botonesAgregar = document.querySelectorAll(".producto-agregar");
 const numerito = document.querySelector("#numerito");
@@ -23,10 +22,9 @@ const signup = document.querySelector("#signup-boton");
 const ofertas = document.querySelector("#ofertas");
 const historial = document.querySelector("#historial");
 
-
-function cargarProductos(productosElegidos) {
-    contenedorProductos.innerHTML = "";
-    productosElegidos.forEach(producto => {
+function cargarProductos(productosSeleccionados) {
+    productosContainer.innerHTML = "";
+    productosSeleccionados.forEach(producto => {
 
         const div = document.createElement("div");
         div.classList.add("producto");
@@ -38,15 +36,15 @@ function cargarProductos(productosElegidos) {
                         <button class="producto-agregar" id="${producto.id}">Agregar</button>
                     </div>
         `
-        contenedorProductos.append(div);
+        productosContainer.append(div);
     })
 
-    actualizarBotonesAgregar()
+    actualizarAgregar()
 }
 
-botonesCategorias.forEach(boton => {
+btnCategoria.forEach(boton => {
         boton.addEventListener("click", (e) => {
-        botonesCategorias.forEach(boton => boton.classList.remove("active"));
+        btnCategoria.forEach(boton => boton.classList.remove("active"));
         e.currentTarget.classList.add("active");
 
         if (e.currentTarget.id != "todos") {
@@ -61,33 +59,33 @@ botonesCategorias.forEach(boton => {
     })
 })
 
-function actualizarBotonesAgregar() {
+function actualizarAgregar() {
     botonesAgregar = document.querySelectorAll(".producto-agregar");
     botonesAgregar.forEach(boton => {
-        boton.addEventListener("click", agregarAlCarrito);
+        boton.addEventListener("click", agregarCarrito);
     })
 }
 
-let productosEnCarrito;
-let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
+let productosAgregados;
+let productosAgregadosLS = localStorage.getItem("productos-en-carrito");
 
-if (productosEnCarritoLS) {
-    productosEnCarrito = JSON.parse(productosEnCarritoLS);
-    actualizarNumerito();
+if (productosAgregadosLS) {
+    productosAgregados = JSON.parse(productosAgregadosLS);
+    actualizarNumero();
 } else {
-    productosEnCarrito = [];
+    productosAgregados = [];
 }
 
-function agregarAlCarrito(e) {
+function agregarCarrito(e) {
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id === idBoton);
 
-    if(productosEnCarrito.some(producto => producto.id === idBoton)){
-        const index = productosEnCarrito.findIndex(producto => producto.id === idBoton);
-        productosEnCarrito[index].cantidad++;
+    if(productosAgregados.some(producto => producto.id === idBoton)){
+        const index = productosAgregados.findIndex(producto => producto.id === idBoton);
+        productosAgregados[index].cantidad++;
         } else {
             productoAgregado.cantidad = 1;
-            productosEnCarrito.push(productoAgregado);
+            productosAgregados.push(productoAgregado);
         };
         Swal.fire({
             position: 'bottom-end',
@@ -101,13 +99,13 @@ function agregarAlCarrito(e) {
             background: '#fcfcfc'
         })
 
-        actualizarNumerito();
-        localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+        actualizarNumero();
+        localStorage.setItem("productos-en-carrito", JSON.stringify(productosAgregados));
 }
 
-function actualizarNumerito() {
-    let nuevoNumerito = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
-    numerito.innerText = nuevoNumerito;
+function actualizarNumero() {
+    let nuevoNumero = productosAgregados.reduce((acc, producto) => acc + producto.cantidad, 0);
+    numerito.innerText = nuevoNumero;
 }
 
 // Busqueda ********************
@@ -123,7 +121,7 @@ function mostrarResultados(resultados) {
             <p class="nada">No se encontraron productos</p>
                     </div>
         `
-        contenedorProductos.append(div);
+        productosContainer.append(div);
     } else {
         resultados.forEach(producto => {
             const div = document.createElement("div");
@@ -136,10 +134,9 @@ function mostrarResultados(resultados) {
                             <button class="producto-agregar" id="${producto.id}">Agregar</button>
                         </div>
             `
-            contenedorProductos.append(div);
-
+            productosContainer.append(div);
             const nuevoBotonAgregar = div.querySelector(".producto-agregar");
-            nuevoBotonAgregar.addEventListener("click", agregarAlCarrito);
+            nuevoBotonAgregar.addEventListener("click", agregarCarrito);
         });
     }
 }
