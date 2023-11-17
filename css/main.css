@@ -142,11 +142,6 @@ a:visited {
     border-radius: 1.5rem 1.5rem 0 0;
 }
 
-/* .boton-menu > i.bi-hand-index-thumb-fill,
-.boton-menu > i.bi-hand-index-thumb {
-    transform: rotateZ(180deg);
-} */
-
 .hand {
     transform: rotateZ(180deg);
     width: 1.5rem;
