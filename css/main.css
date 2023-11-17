@@ -113,7 +113,6 @@ a:visited {
 .logo {
     font-weight: 300;
     font-size: 1.3rem;
-    /* padding-bottom: .5rem; */
 }
 
 .menu {
@@ -143,9 +142,18 @@ a:visited {
     border-radius: 1.5rem 1.5rem 0 0;
 }
 
-.boton-menu > i.bi-hand-index-thumb-fill,
+/* .boton-menu > i.bi-hand-index-thumb-fill,
 .boton-menu > i.bi-hand-index-thumb {
     transform: rotateZ(180deg);
+} */
+
+.hand {
+    transform: rotateZ(180deg);
+    width: 1.5rem;
+}
+
+.guitar, .bass, .electronic, .cart, .arrow {
+    width: 1.5rem;
 }
 
 .numerito {
@@ -190,7 +198,6 @@ main {
     padding: .5rem;
     border-radius: 1rem;
     margin-top: -.5rem;
-    /* position: relative; */
     display: flex;
     flex-direction: column;
     gap: .25rem;
@@ -242,7 +249,10 @@ main {
 }
 
 .carrito-producto {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
     justify-content: space-between;
     align-items: center;
     background-color: #A675A1;
@@ -268,12 +278,12 @@ main {
     cursor: pointer;
 }
 
-.carrito-acciones {
+.carrito-in {
     display: flex;
     justify-content: space-between;
 }
 
-.carrito-acciones-vaciar {
+.carrito-in-vaciar {
     border: 0;
     background-color: #A675A1;
     padding: 1rem;
@@ -283,11 +293,11 @@ main {
     cursor: pointer;
 }
 
-.carrito-acciones-derecha {
+.carrito-in-derecha {
     display: flex;
 }
 
-.carrito-acciones-total {
+.carrito-in-total {
     display: flex;
     background-color: #A675A1;
     padding: 1rem;
@@ -297,7 +307,7 @@ main {
     gap: 1rem;
 }
 
-.carrito-acciones-comprar {
+.carrito-in-comprar {
     border: 0;
     background-color: #EFF7FF;
     padding: 1rem;
@@ -446,7 +456,7 @@ input {
 
     .carrito-producto { 
         flex-direction: column;
-        max-width: 20rem;
+        max-width: 35rem;
     }
 }
 

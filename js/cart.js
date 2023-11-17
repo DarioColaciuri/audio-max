@@ -3,12 +3,12 @@ productosEnCarrito = JSON.parse(productosEnCarrito);
 
 const contenedorCarritoVacio = document.querySelector("#carrito-vacio");
 const contenedorCarritoProductos = document.querySelector("#carrito-productos");
-const contenedorCarritoAcciones = document.querySelector("#carrito-acciones");
+const contenedorCarritoIn = document.querySelector("#carrito-in");
 const contenedorCarritoComprado = document.querySelector("#carrito-comprado");
 let botonesEliminar = document.querySelectorAll("#carrito-producto-eliminar");
-const botonVaciar = document.querySelector("#carrito-acciones-vaciar");
+const botonVaciar = document.querySelector("#carrito-in-vaciar");
 const contenedorTotal = document.querySelector("#total");
-const botonComprar = document.querySelector("#carrito-acciones-comprar");
+const botonComprar = document.querySelector("#carrito-in-comprar");
 const cerrar = document.querySelector("#cerrar");
 const wrapper = document.querySelector("#wrapper");
 const ingresa = document.querySelector("#ingresa");
@@ -27,7 +27,7 @@ function cargarProductosCarrito() {
 
         contenedorCarritoVacio.classList.add("disabled");
         contenedorCarritoProductos.classList.remove("disabled");
-        contenedorCarritoAcciones.classList.remove("disabled");
+        contenedorCarritoIn.classList.remove("disabled");
         contenedorCarritoComprado.classList.add("disabled"); 
         contenedorCarritoProductos.innerHTML = "";
     
@@ -38,28 +38,28 @@ function cargarProductosCarrito() {
             <img class="carrito-producto-imagen" src="${producto.imagen}" alt="${producto.titulo}">
                 <div class="carrito-producto-titulo">
                     <small>Titulo</small>
-                    <h3>${producto.titulo}</h3>
+                    <h3 class="carrito-producto-titulo">${producto.titulo}</h3>
                 </div>
                 <div class="carrito-producto-cantidad">
                     <small>Cantidad</small>
                     <p>${producto.cantidad}</p>
                 </div>   
                 <div class="carrito-producto-precio">
-                    <small>Precio</small>
+                    <small>Precio unitario</small>
                     <p>u$ ${producto.precio}</p>
                 </div>        
                 <div class="carrito-producto-subtotal">
-                    <small>Subtotal</small>
+                    <small>Total</small>
                     <p>u$ ${producto.precio * producto.cantidad}</p>
                 </div>
-                <button class="carrito-producto-eliminar" id="${producto.id}"><i class="bi bi-trash"></i></button>
+                <button class="carrito-producto-eliminar" id="${producto.id}"><img class="cart" src="./img/cross.png" alt="cross icon"></button>
             `;
             contenedorCarritoProductos.append(div);
         })
     } else {
         contenedorCarritoVacio.classList.remove("disabled");
         contenedorCarritoProductos.classList.add("disabled");
-        contenedorCarritoAcciones.classList.add("disabled");
+        contenedorCarritoIn.classList.add("disabled");
         contenedorCarritoComprado.classList.add("disabled");
     }
 
@@ -102,7 +102,7 @@ function comprarCarrito() {
     localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
     contenedorCarritoVacio.classList.add("disabled");
     contenedorCarritoProductos.classList.add("disabled");
-    contenedorCarritoAcciones.classList.add("disabled");
+    contenedorCarritoIn.classList.add("disabled");
     contenedorCarritoComprado.classList.remove("disabled");
 }
 

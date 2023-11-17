@@ -108,7 +108,7 @@ function actualizarNumero() {
     numerito.innerText = nuevoNumero;
 }
 
-// Busqueda ********************
+
 
 function mostrarResultados(resultados) {
     const resultadosContainer = document.getElementById('contenedor-productos');
@@ -149,16 +149,6 @@ document.getElementById('search-button').addEventListener('click', function() {
     mostrarResultados(resultados);
 });
 
-
-// Buscar con la tecla enter
-
-document.getElementById('search').addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        buscar();
-    }
-});
-
 function buscar() {
     const searchText = document.getElementById('search').value.toLowerCase();
     const resultados = productos.filter(producto =>
@@ -167,7 +157,14 @@ function buscar() {
     mostrarResultados(resultados);
 }
 
-// Sector menu login y alerts
+document.getElementById('search').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        buscar();
+    }
+});
+
+
 
 function alternar(mostrar, ocultar) {
     mostrar.classList.remove("disabled");
