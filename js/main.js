@@ -1,11 +1,3 @@
-let productos = [];
-fetch("./js/productos.json")
-    .then(response => response.json())
-    .then(data => {
-        productos = data;
-        cargarProductos(productos);
-    })
-
 const productosContainer = document.querySelector("#contenedor-productos");
 const btnCategoria = document.querySelectorAll(".boton-categoria");
 const tituloPrincipal = document.querySelector("#titulo-principal");
@@ -21,6 +13,14 @@ const login = document.querySelector("#login-boton");
 const signup = document.querySelector("#signup-boton");
 const ofertas = document.querySelector("#ofertas");
 const historial = document.querySelector("#historial");
+
+let productos = [];
+fetch("./js/productos.json")
+    .then(response => response.json())
+    .then(data => {
+        productos = data;
+        cargarProductos(productos);
+    })
 
 function cargarProductos(productosSeleccionados) {
     productosContainer.innerHTML = "";
@@ -38,12 +38,11 @@ function cargarProductos(productosSeleccionados) {
         `
         productosContainer.append(div);
     })
-
     actualizarAgregar()
 }
 
 btnCategoria.forEach(boton => {
-        boton.addEventListener("click", (e) => {
+    boton.addEventListener("click", (e) => {
         btnCategoria.forEach(boton => boton.classList.remove("active"));
         e.currentTarget.classList.add("active");
 
@@ -54,8 +53,8 @@ btnCategoria.forEach(boton => {
             cargarProductos(productosBoton);
         } else {
             tituloPrincipal.innerText = "Todos los productos"
-            cargarProductos(productos);  
-            }
+            cargarProductos(productos);
+        }
     })
 })
 
@@ -68,7 +67,6 @@ function actualizarAgregar() {
 
 let productosAgregados;
 let productosAgregadosLS = localStorage.getItem("productos-en-carrito");
-
 if (productosAgregadosLS) {
     productosAgregados = JSON.parse(productosAgregadosLS);
     actualizarNumero();
@@ -80,27 +78,27 @@ function agregarCarrito(e) {
     const idBoton = e.currentTarget.id;
     const productoAgregado = productos.find(producto => producto.id === idBoton);
 
-    if(productosAgregados.some(producto => producto.id === idBoton)){
+    if (productosAgregados.some(producto => producto.id === idBoton)) {
         const index = productosAgregados.findIndex(producto => producto.id === idBoton);
         productosAgregados[index].cantidad++;
-        } else {
-            productoAgregado.cantidad = 1;
-            productosAgregados.push(productoAgregado);
-        };
-        Swal.fire({
-            position: 'bottom-end',
-            color: '#A675A1',
-            title: 'Producto agregado al carrito',
-            showConfirmButton: false,
-            timer: 2000,
-            imageUrl: './img/add.gif',
-            imageWidth: 150,
-            imageHeight: 150,
-            background: '#fcfcfc'
-        })
+    } else {
+        productoAgregado.cantidad = 1;
+        productosAgregados.push(productoAgregado);
+    };
+    Swal.fire({
+        position: 'bottom-end',
+        color: '#A675A1',
+        title: 'Producto agregado al carrito',
+        showConfirmButton: false,
+        timer: 2000,
+        imageUrl: './img/add.gif',
+        imageWidth: 150,
+        imageHeight: 150,
+        background: '#fcfcfc'
+    })
 
-        actualizarNumero();
-        localStorage.setItem("productos-en-carrito", JSON.stringify(productosAgregados));
+    actualizarNumero();
+    localStorage.setItem("productos-en-carrito", JSON.stringify(productosAgregados));
 }
 
 function actualizarNumero() {
@@ -141,13 +139,15 @@ function mostrarResultados(resultados) {
     }
 }
 
-document.getElementById('search-button').addEventListener('click', function() {
+document.getElementById('search-button').addEventListener('click', function () {
     const searchText = document.getElementById('search').value.toLowerCase();
     const resultados = productos.filter(producto =>
         producto.titulo.toLowerCase().includes(searchText)
     );
     mostrarResultados(resultados);
 });
+
+
 
 function buscar() {
     const searchText = document.getElementById('search').value.toLowerCase();
@@ -157,7 +157,7 @@ function buscar() {
     mostrarResultados(resultados);
 }
 
-document.getElementById('search').addEventListener('keypress', function(e) {
+document.getElementById('search').addEventListener('keypress', function (e) {
     if (e.key === 'Enter') {
         e.preventDefault();
         buscar();
@@ -211,23 +211,6 @@ ofertas.addEventListener("click", () => {
 historial.addEventListener("click", () => {
     mostrarToast("Funcion disponible para usuarios");
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
